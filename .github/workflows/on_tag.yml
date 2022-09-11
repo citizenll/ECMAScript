@@ -3,6 +3,10 @@ name: 🚢 Publish release
   push:
     tags:
     - '*'
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: 'release tags'
 jobs:
   collect-template:
     runs-on: ubuntu-latest
