@@ -16,12 +16,12 @@ jobs:
       fail-fast: false
       matrix:
         include:
-        - name: Editor w/ Mono (target=release_debug, tools=yes)
-          cache-name: linux-editor-mono
+        - name: Editor w (target=release_debug, tools=yes)
+          cache-name: linux-editor
           target: release_debug
           tools: true
-          sconsflags: module_mono_enabled=yes mono_static=yes mono_glue=no
-          bin: ./bin/godot.x11.opt.tools.64.mono
+          sconsflags: ' '
+          bin: ./bin/godot.x11.opt.tools.64
           build-mono: true
           artifact: true
         - name: Editor and sanitizers (target=debug, tools=yes)
@@ -33,11 +33,11 @@ jobs:
           bin: ./bin/godot.x11.tools.64s
           build-mono: false
           artifact: false
-        - name: Template w/ Mono (target=release, tools=no)
-          cache-name: linux-template-mono
+        - name: Template w (target=release, tools=no)
+          cache-name: linux-template
           target: release
           tools: false
-          sconsflags: module_mono_enabled=yes mono_static=yes mono_glue=no debug_symbols=no
+          sconsflags: ' '
           build-mono: false
           artifact: true
     steps:
@@ -94,9 +94,9 @@ jobs:
     - name: Download test project
       if: ${{ matrix.test }}
       run: |
-        wget https://github.com/godotengine/regression-test-project/archive/3.4.zip
-        unzip 3.4.zip
-        mv "regression-test-project-3.4" "test_project"
+        wget https://github.com/godotengine/regression-test-project/archive/3.x.zip
+        unzip 3.x.zip
+        mv "regression-test-project-3.x" "test_project"
     - name: Open and close editor
       if: ${{ matrix.test }}
       run: |
