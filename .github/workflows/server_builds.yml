@@ -63,3 +63,7 @@ jobs:
         target: ${{ matrix.target }}
         tools: ${{ matrix.tools }}
         shell: sh
+    - name: Upload artifact
+      uses: ./.github/actions/upload-artifact
+      with:
+        name: ${{ matrix.cache-name }}
